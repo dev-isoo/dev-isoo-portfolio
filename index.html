@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dev Isoo | Ismail Sheriff, Full-Stack Developer</title>
+  <meta name="description" content="Dev Isoo (Ismail Sheriff) builds fast, modern websites and web apps for real businesses.">
+  <link rel="canonical" href="https://YOUR-DOMAIN.com/">
+  <meta property="og:title" content="Dev Isoo | Full-Stack Developer">
+  <meta property="og:description" content="I build digital experiences that actually hit.">
+  <meta property="og:url" content="https://YOUR-DOMAIN.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="logo"><span class="logo-mark">DI</span> DEV ISO0</a>
+      <nav id="menu" class="menu">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle menu">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="status"><span class="dot"></span> AVAILABLE FOR SELECT PROJECTS</p>
+          <h1>I build digital experiences that <span class="grad">actually hit.</span></h1>
+          <p class="lead">Full-stack developer turning ideas, businesses and ambitious concepts into fast, modern and unforgettable digital experiences.</p>
+          <div class="actions">
+            <a href="#work" class="btn btn-grad">View my work</a>
+            <a href="#contact" class="btn btn-ghost">Let's build something</a>
+          </div>
+          <p class="meta">DEV ISO0 / FULL-STACK DEVELOPER / DESIGN × CODE × EXPERIENCE</p>
+        </div>
+
+        <div class="code-window" aria-hidden="true">
+          <div class="code-bar"><i></i><i></i><i></i><span>isoo.config.js</span></div>
+          <pre id="heroCode"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="reveal">Not just <span class="grad">code.</span></h2>
+        <p class="lead reveal">Dev Isoo builds complete digital experiences, from interface design and frontend development to backend systems, deployment and optimization.</p>
+        <div id="pillars" class="pillars reveal"></div>
+      </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section id="stack" class="section">
+      <div class="wrap">
+        <h2 class="reveal">The <span class="grad">stack.</span></h2>
+        <p class="lead reveal">Hover or tap a tool to see how I use it.</p>
+        <div class="stack-grid">
+          <div id="chips" class="chips"></div>
+          <div id="panel" class="panel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section id="work" class="section">
+      <div class="wrap">
+        <h2 class="reveal">Built. Shipped. <span class="grad">Live.</span></h2>
+        <p class="lead reveal">Open a project for the full case study.</p>
+        <div id="cards" class="cards"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="wrap">
+        <h2 class="reveal">What I <span class="grad">build.</span></h2>
+        <div id="services-list" class="services"></div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="reveal">How it <span class="grad">gets made.</span></h2>
+        <div id="process" class="process"></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section">
+      <div class="wrap">
+        <h2 class="reveal">By the <span class="grad">numbers.</span></h2>
+        <div id="stats" class="stats"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="wrap about-grid">
+        <div class="portrait"><span>DI</span><small>Replace with your portrait</small></div>
+        <div>
+          <h2 class="reveal about-title">A developer obsessed with turning ideas into <span class="grad">digital experiences.</span></h2>
+          <p class="lead">I like building things that work in the real world. Design, code and business thinking belong in the same conversation: how a page looks, how fast it loads, how the data moves, and whether it helps someone make a sale.</p>
+          <p class="lead">Based in Lagos. Always learning, always refining: ship, measure, improve.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="wrap">
+        <h2 class="reveal big">Have an <span class="grad">idea?</span></h2>
+        <p class="sub">LET'S TURN IT INTO SOMETHING REAL.</p>
+
+        <form id="form" class="form">
+          <label>Name <input name="name" required></label>
+          <label>Email <input name="email" type="email" required></label>
+          <label>Company <input name="company"></label>
+          <label>Project type
+            <select name="type">
+              <option>Business website</option>
+              <option>Web application</option>
+              <option>Full-stack system</option>
+              <option>Landing page</option>
+              <option>Website redesign</option>
+              <option>Custom development</option>
+            </select>
+          </label>
+          <label class="full">Budget
+            <select name="budget">
+              <option>Not sure yet</option>
+              <option>Under $500</option>
+              <option>$500 - $1,500</option>
+              <option>$1,500 - $5,000</option>
+              <option>$5,000+</option>
+            </select>
+          </label>
+          <label class="full">Message <textarea name="message" rows="5" required></textarea></label>
+          <div class="full actions">
+            <button class="btn btn-grad" type="submit">Send inquiry</button>
+            <a id="whatsapp" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p id="formNote" class="full note"></p>
+        </form>
+
+        <div id="socials" class="socials"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-brand grad">DEV ISO0</p>
+      <div class="footer-row">
+        <div><strong>FULL-STACK DEVELOPER</strong></div>
+        <nav class="footer-nav">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#stack">Stack</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="btn btn-ghost small">Need a website? → Let's build.</a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Dev Isoo. Built with code, curiosity and obsession.</span>
+        <developer-credit variant="footer"></developer-credit>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CASE STUDY MODAL -->
+  <dialog id="modal">
+    <button id="modalClose" class="modal-close">Close ✕</button>
+    <div id="modalBody" class="modal-body"></div>
+  </dialog>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
