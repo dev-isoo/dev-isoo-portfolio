@@ -12,14 +12,14 @@ const CONFIG = {
 
   location: "Lagos, Nigeria",
 
-  email: "hello@YOUR-DOMAIN.com",
+  email: "isoodev01@gmail.com",
 
-  whatsapp: "2349052161702", // international format, no +
+  whatsapp: "+2349052161702", // international format, no +
 
   social: {
     GitHub: "https://github.com/dev-isoo",
     LinkedIn: "https://www.linkedin.com/in/dev-isoo-552656288/",
-    X: "https://x.com/",
+    X: "https://x.com/Devisooo",
     Instagram: "https://instagram.com/"
   },
 
@@ -79,7 +79,7 @@ const CONFIG = {
           "A fast, immersive platform the client can update on their own.",
 
         stats: [
-          { label: "Pages", value: 4}
+          { label: "Pages", value: 1}
         ]
 
       }
@@ -135,7 +135,7 @@ const CONFIG = {
           "A professional and accessible online presence that makes it easier for parents and prospective students to understand the academy and take the next step toward enrollment.",
 
         stats: [
-          { label: "Pages", value: 1 }
+          { label: "Pages", value: 3 }
         ]
 
       }

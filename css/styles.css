@@ -6,16 +6,16 @@
 
 /* 1. VARIABLES ------------------------------------------- */
 :root {
-  --bg: #07060d;
-  --text: #f5f4fa;
-  --muted: #9c98b0;
-  --line: rgba(255, 255, 255, 0.1);
-  --surface: rgba(255, 255, 255, 0.04);
+  --bg: #f5faff;
+  --text: #0b1b33;
+  --muted: #55657f;
+  --line: rgba(30, 80, 150, 0.14);
+  --surface: rgba(255, 255, 255, 0.75);
 
   /* Change these three to restyle the whole gradient */
-  --c1: #7c5cff;
-  --c2: #3b82f6;
-  --c3: #22d3ee;
+  --c1: #2563eb;
+  --c2: #0ea5e9;
+  --c3: #38bdf8;
   --gradient: linear-gradient(120deg, var(--c1), var(--c2) 55%, var(--c3));
 
   --font: "Space Grotesk", system-ui, sans-serif;
@@ -25,12 +25,14 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-body{
-  
+body {
   margin: 0;
   font: 400 17px/1.6 var(--font);
   color: var(--text);
-    background:     radial-gradient(60vmax 40vmax at 90% -10%, rgba(124, 92, 255, 0.28), transparent 60%),     radial-gradient(50vmax 40vmax at -10% 40%, rgba(34, 211, 238, 0.12), transparent 60%),     var(--bg);
+  background:
+    radial-gradient(60vmax 40vmax at 90% -10%, rgba(56, 189, 248, 0.30), transparent 60%),
+    radial-gradient(50vmax 40vmax at -10% 40%, rgba(147, 197, 253, 0.40), transparent 60%),
+    var(--bg);
   background-attachment: fixed;
   overflow-x: hidden;
 }
@@ -59,20 +61,26 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   padding: 14px 0;
-  background: rgba(7, 6, 13, 0.7);
+}
+/* frosted background lives here so it does not trap the mobile menu */
+.nav::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; }
-.logo-mark {
-  display: grid; place-items: center;
-  width: 34px; height: 34px;
-  background: var(--gradient); color: #fff; font-size: 14px;
-  border-radius: 8px;
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.logo-img {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid var(--c3);
+  box-shadow: 0 4px 14px -4px var(--c1);
 }
-
 .menu { display: flex; gap: 28px; font-size: 15px; }
 .menu a { color: var(--muted); transition: color 0.3s; }
 .menu a:hover { color: var(--text); }
@@ -125,15 +133,15 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
 
 .code-window {
   border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-  background: rgba(14, 12, 24, 0.7); backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
   font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px;
   box-shadow: 0 30px 80px -30px var(--c1);
 }
 .code-bar { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
-.code-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a3750; }
+.code-bar i { width: 10px; height: 10px; border-radius: 50%; background: #c3d5ec; }
 .code-bar span { margin-left: auto; font-size: 11px; color: var(--muted); }
-.code-window pre { margin: 0; padding: 20px; min-height: 250px; line-height: 1.8; white-space: pre-wrap; color: #d8d5e8; }
-.k { color: var(--c1); } .s { color: var(--c3); } .c { color: #6b6783; }
+.code-window pre { margin: 0; padding: 20px; min-height: 250px; line-height: 1.8; white-space: pre-wrap; color: var(--text); }
+.k { color: var(--c1); } .s { color: #0e7490; } .c { color: #8aa0bd; }
 
 /* 5. SECTIONS -------------------------------------------- */
 .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 50px; }
@@ -148,7 +156,7 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
   padding: 14px 22px; border: 1px solid var(--line); border-radius: 10px;
   background: var(--surface); transition: transform 0.3s, border-color 0.3s, background 0.3s;
 }
-.chip:hover, .chip.active { transform: translateY(-4px); border-color: var(--c2); background: rgba(124, 92, 255, 0.14); }
+.chip:hover, .chip.active { transform: translateY(-4px); border-color: var(--c2); background: rgba(37, 99, 235, 0.10); }
 .panel { position: sticky; top: 100px; align-self: start; min-height: 240px; padding: 32px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 .panel h3 { font-size: 44px; margin: 8px 0 14px; }
 .panel p { color: var(--muted); margin: 0 0 12px; }
@@ -175,12 +183,18 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
 @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } }
 .about-title { font-size: clamp(32px, 5vw, 68px); }
 .portrait {
-  position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5;
+  position: relative; aspect-ratio: 4 / 5; overflow: hidden;
   border: 1px solid var(--line); border-radius: 18px;
-  background: linear-gradient(160deg, rgba(124, 92, 255, 0.25), rgba(34, 211, 238, 0.08));
+  background: linear-gradient(160deg, rgba(56, 189, 248, 0.30), rgba(37, 99, 235, 0.08));
+  box-shadow: 0 30px 80px -40px var(--c1);
 }
-.portrait span { font-size: clamp(80px, 14vw, 170px); font-weight: 700; letter-spacing: -0.06em; opacity: 0.35; }
-.portrait small { position: absolute; bottom: 14px; left: 14px; color: var(--muted); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+/* soft gradient tint at the bottom so the caption stays readable */
+.portrait::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(11, 27, 51, 0.70), transparent 35%);
+}
+.portrait-tag { position: absolute; left: 16px; bottom: 14px; z-index: 1; font-size: 12px; letter-spacing: 0.1em; color: #fff; }
 
 /* 6. PROJECT CARDS & MODAL ------------------------------- */
 .cards { display: grid; gap: 28px; margin-top: 56px; }
@@ -197,7 +211,7 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
 .visual-bg { position: absolute; inset: -10%; background: var(--g); transition: transform 1s ease; }
 .card:hover .visual-bg { transform: scale(1.12); }
 .visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.visual big { position: relative; font-size: clamp(60px, 12vw, 140px); font-weight: 700; letter-spacing: -0.06em; }
+.visual big { position: relative; color: #fff; font-size: clamp(60px, 12vw, 140px); font-weight: 700; letter-spacing: -0.06em; }
 
 .card-info { display: flex; flex-direction: column; gap: 14px; justify-content: center; padding: clamp(24px, 3vw, 42px); }
 .card-info h3 { font-size: clamp(32px, 4vw, 54px); }
@@ -208,8 +222,8 @@ h2 { font-size: clamp(40px, 7vw, 96px); margin-bottom: 24px; }
 .problem { padding-left: 14px; border-left: 2px solid var(--c2); font-size: 15px; }
 .links { display: flex; flex-wrap: wrap; gap: 10px; }
 
-dialog { width: min(1050px, 94vw); max-height: 92vh; padding: 0; overflow: auto; color: var(--text); background: #0c0a16; border: 1px solid var(--line); border-radius: 20px; }
-dialog::backdrop { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); }
+dialog { width: min(1050px, 94vw); max-height: 92vh; padding: 0; overflow: auto; color: var(--text); background: #ffffff; border: 1px solid var(--line); border-radius: 20px; }
+dialog::backdrop { background: rgba(11, 27, 51, 0.45); backdrop-filter: blur(8px); }
 .modal-close { position: sticky; top: 0; float: right; margin: 14px; padding: 8px 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
 .modal-body { padding: clamp(24px, 4vw, 54px); }
 .modal-body h2 { font-size: clamp(38px, 6vw, 80px); }
@@ -234,7 +248,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); }
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
 }
 .form input:focus, .form select:focus, .form textarea:focus { outline: 0; border-color: var(--c2); }
-.form option { background: #111; }
+.form option { background: #fff; color: #0b1b33; }
 .note { margin: 0; min-height: 1.4em; color: var(--c3); }
 
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
@@ -248,12 +262,12 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
 
 /* 8. DEVELOPER CREDIT ------------------------------------ */
-.credit { display: inline-flex; gap: 6px; align-items: baseline; font-size: 13px; color: var(--cm, #9c98b0); }
-.credit b { font-weight: 700; color: var(--cf, #f5f4fa); }
+.credit { display: inline-flex; gap: 6px; align-items: baseline; font-size: 13px; color: var(--cm, var(--muted)); }
+.credit b { font-weight: 700; color: var(--cf, var(--text)); }
 .credit i { font-style: normal; display: inline-block; transition: transform 0.3s; }
 .credit:hover i { transform: translate(2px, -2px); }
 .credit:hover b { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.credit.light { --cm: #666; --cf: #111; }
+.credit.light { --cm: #55657f; --cf: #0b1b33; }
 .credit.compact span { display: none; }
 .credit.footer { padding: 8px 14px; border: 1px solid var(--line); border-radius: 99px; }
 
@@ -266,18 +280,13 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Portrait size (your override, responsive) */
 .portrait {
-  width: 500px;
-  height:500px;
+  width: min(500px, 100%);
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 20px;
   margin: 0 auto;
 }
-
-.portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
