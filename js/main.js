@@ -59,7 +59,7 @@ $("#socials").innerHTML =
 
 // FIX: strip any "+", spaces or dashes so the wa.me link always works
 const whatsappNumber = String(CONFIG.whatsapp).replace(/\D/g, "");
-$("#whatsapp").href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Dev Isoo, I have a project idea.")}`;
+$("#whatsapp").href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello Dev Isoo,\n\nI saw your portfolio and I would like to work with you.\n\nProject type:\nBudget:\nTimeline:\n\nHere is what I have in mind:")}`;
 
 
 /* ---------- 3. PROJECT CARDS + CASE STUDY MODAL ---------- */

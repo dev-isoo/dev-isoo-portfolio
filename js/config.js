@@ -14,7 +14,7 @@ const CONFIG = {
 
   email: "isoodev01@gmail.com",
 
-  whatsapp: "+2349052161702", // international format, no +
+  whatsapp: "2349052161702", // international format, no +
 
   social: {
     GitHub: "https://github.com/dev-isoo",
