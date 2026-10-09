@@ -4,7 +4,7 @@
 
 const CONFIG = {
 
-  domain: "https://YOUR-DOMAIN.com", // <- your portfolio domain
+  domain: "https://dev-isoo-portfolio.onrender.com", // <- your portfolio domain
 
   name: "Ismail Sheriff",
 
