@@ -22,7 +22,11 @@ const CONFIG = {
     X: "https://x.com/Devisooo",
     Instagram: "https://instagram.com/"
   },
-
+  emailjs: {
+    publicKey: "RswObXfSfVooqd195",
+    serviceId:  "service_d98zrps",
+    templateId: "template_bd321t7"
+  },
   // Use null for numbers you don't have yet (shows a dash)
   stats: [
     { label: "Projects built", value: 100 },

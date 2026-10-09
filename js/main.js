@@ -1,4 +1,4 @@
-/* ==========================================================
+ /* ==========================================================
    MAIN - rendering and interactions. Reads data from CONFIG.
    ========================================================== */
 
@@ -57,7 +57,9 @@ $("#socials").innerHTML =
   Object.entries(CONFIG.social).map(([name, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${name}</a>`).join("") +
   `<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`;
 
-$("#whatsapp").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hi Dev Isoo, I have a project idea.")}`;
+// FIX: strip any "+", spaces or dashes so the wa.me link always works
+const whatsappNumber = String(CONFIG.whatsapp).replace(/\D/g, "");
+$("#whatsapp").href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Dev Isoo, I have a project idea.")}`;
 
 
 /* ---------- 3. PROJECT CARDS + CASE STUDY MODAL ---------- */
@@ -208,18 +210,113 @@ const observer = new IntersectionObserver((entries) => {
 $$(".reveal, .stats").forEach((el) => observer.observe(el));
 
 
-/* ---------- 7. CONTACT FORM (opens a pre-filled email) ---------- */
-$("#form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  const get = (key) => data.get(key) || "-";
+/* ---------- 7. CONTACT FORM (EmailJS, with email fallback) ----------
+   FIX: EmailJS is now checked when the form is SUBMITTED, not once at
+   page load. If the SDK <script> is missing or loads late, this file
+   loads it automatically, so the form no longer falls back to mailto
+   just because of script order.
+   ------------------------------------------------------------------ */
+const form = $("#form");
+const formNote = $("#formNote");
+const submitBtn = form.querySelector('button[type="submit"]');
+const ej = CONFIG.emailjs;
+
+const EMAILJS_SDK_URL = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+
+const keysFilledIn =
+  !!ej && [ej.publicKey, ej.serviceId, ej.templateId].every((v) => v && !String(v).startsWith("YOUR_"));
+
+let emailjsInitialised = false;
+
+// Make sure the EmailJS SDK exists. Loads it from the CDN if the page did not.
+function loadEmailJS() {
+  return new Promise((resolve) => {
+    if (window.emailjs) return resolve(true);
+
+    const script = document.createElement("script");
+    script.src = EMAILJS_SDK_URL;
+    script.onload = () => resolve(Boolean(window.emailjs));
+    script.onerror = () => resolve(false);
+    document.head.appendChild(script);
+  });
+}
+
+// Returns true only when EmailJS can really be used right now
+async function emailjsAvailable() {
+  if (!keysFilledIn) {
+    console.warn("[Contact form] EmailJS keys are placeholders. Fill in emailjs{} in js/config.js.");
+    return false;
+  }
+  const loaded = await loadEmailJS();
+  if (!loaded) {
+    console.warn("[Contact form] EmailJS script could not load. Check your internet connection or ad blocker.");
+    return false;
+  }
+  if (!emailjsInitialised) {
+    emailjs.init({ publicKey: ej.publicKey });
+    emailjsInitialised = true;
+  }
+  return true;
+}
+
+// Warm up the SDK in the background so the first submit is instant
+if (keysFilledIn) emailjsAvailable();
+
+// Fallback: open the visitor's email app with the inquiry filled in
+function sendByMailto(params) {
   const body =
-    `Name: ${get("name")}\nEmail: ${get("email")}\nCompany: ${get("company")}\n` +
-    `Project type: ${get("type")}\nBudget: ${get("budget")}\n\n${get("message")}`;
-  location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Project inquiry: " + get("type"))}&body=${encodeURIComponent(body)}`;
-  $("#formNote").textContent = "Opening your email app with the inquiry filled in. Prefer chat? Use WhatsApp.";
+    `Name: ${params.name}\nEmail: ${params.email}\nCompany: ${params.company}\n` +
+    `Project type: ${params.type}\nBudget: ${params.budget}\n\n${params.message}`;
+  location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Project inquiry: " + params.type)}&body=${encodeURIComponent(body)}`;
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // These keys must match the {{variables}} in your EmailJS template
+  const data = new FormData(form);
+  const params = {
+    name:    data.get("name"),
+    email:   data.get("email"),
+    company: data.get("company") || "-",
+    type:    data.get("type"),
+    budget:  data.get("budget"),
+    message: data.get("message"),
+    time:    new Date().toLocaleString()
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+  formNote.textContent = "";
+
+  const ready = await emailjsAvailable();
+
+  // EmailJS could not be used -> fall back to the visitor's email app
+  if (!ready) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Send inquiry";
+    sendByMailto(params);
+    formNote.textContent = "Opening your email app with the inquiry filled in. Prefer chat? Use WhatsApp.";
+    return;
+  }
+
+  try {
+    await emailjs.send(ej.serviceId, ej.templateId, params);
+    form.reset();
+    formNote.textContent = "Message sent. Thanks! I'll reply within 24 hours.";
+  } catch (error) {
+    // EmailJS errors look like { status: 400, text: "..." }
+    console.error("EmailJS error:", error);
+    const reason = error && error.text ? ` (${error.text})` : "";
+    console.warn("[Contact form] EmailJS rejected the request" + reason);
+    formNote.textContent = `Something went wrong. Please email ${CONFIG.email} or use WhatsApp.`;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Send inquiry";
+  }
 });
 
 
 /* ---------- 8. DEVELOPER CONSOLE MESSAGE ---------- */
-console.log("%cDEV ISO0", "font:700 28px sans-serif;color:#7c5cff", `\nCurious how it works? ${CONFIG.domain}`);
+console.log("%cDEV ISOO", "font:700 28px sans-serif;color:#2563eb", `\nCurious how it works? ${CONFIG.domain}`);
+console.log("[Dev Isoo] main.js loaded (EmailJS version). Keys filled in:", keysFilledIn);
