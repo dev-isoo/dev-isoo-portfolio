@@ -38,18 +38,18 @@ const CONFIG = {
   // To add a project: copy one block below and fill it in.
   projects: [
 
-    {
+       {
       title: "GODMADE",
 
       category: "Photography / Film / Drone",
 
-      technologies: ["React", "Node.js", "Firebase"],
+      technologies: ["HTML", "CSS", "JavaScript", "Render"],
 
       description:
-        "A visual storytelling platform for photography, film and drone work.",
+        "A portfolio and booking website for a photography, film and drone studio in Lagos.",
 
       problem:
-        "Creative work needed a home as cinematic as the work itself.",
+        "A creative studio needed one place to show its work, list its frames and take booking requests.",
 
       image: "image/image-1.jpeg",
 
@@ -60,35 +60,34 @@ const CONFIG = {
         "https://god-made-epts.onrender.com/",
 
       githubUrl:
-        "https://github.com/dev-isoo/god-made.git",
+        "https://github.com/dev-isoo/god-made",
 
       caseStudy: {
 
         idea:
-          "A showcase where photography, film and aerial footage feel like one connected story.",
+          "A site where the photography, film and drone work leads, and a visitor can book a session without leaving the page.",
 
         problem:
-          "Generic gallery templates flatten visual work and load slowly with heavy media.",
+          "The studio had strong visual work but no single place to show it, price its featured frames and collect booking requests.",
 
         approach:
-          "Media-first layouts, lazy-loaded assets and navigation that stays out of the way.",
+          "A single-page layout with a filterable gallery, a featured-frames section with prices, client testimonials and a booking form.",
 
         technology:
-          "React frontend, Node.js services and Firebase for content and hosting.",
+          "Plain HTML, CSS and JavaScript, hosted on Render.",
 
         build:
-          "Reusable gallery components, optimised media delivery, mobile-first layout.",
+          "Built a gallery with category filters and click-to-enlarge photos, a priced featured-work section, a booking form and contact links.",
 
         result:
-          "A fast, immersive platform the client can update on their own.",
+          "A live, mobile-friendly site that presents the studio's work and lets clients get in touch.",
 
         stats: [
-          { label: "Pages", value: 1}
+          { label: "Pages", value: 1 }
         ]
 
       }
     },
-
     {
       title: "SAPIENZA ACADEMY",
 
