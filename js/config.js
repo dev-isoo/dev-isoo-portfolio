@@ -1,4 +1,4 @@
- /* ==========================================================
+﻿ /* ==========================================================
    CONFIG - EDIT EVERYTHING HERE. No other file needs changes.
    ========================================================== */
 
@@ -20,7 +20,7 @@ const CONFIG = {
     GitHub: "https://github.com/dev-isoo",
     LinkedIn: "https://www.linkedin.com/in/dev-isoo-552656288/",
     X: "https://x.com/Devisooo",
-    Instagram: "https://instagram.com/"
+    Instagram: "https://instagram.com/isoodev01"
   },
   emailjs: {
     publicKey: "RswObXfSfVooqd195",
